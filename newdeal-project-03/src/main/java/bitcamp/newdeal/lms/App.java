@@ -52,8 +52,8 @@ public class App {
     keyIn.close();
 
     for (int i = 0; i < len; i++) {
-      System.out.printf("%d, %s, %s, %s ~ %s, %d, %d\n" ,
-          no[i],title[i],contents[i],startDate[i],endDate[i], totalHours[i], dayHours[i]);
+      System.out.printf("번호: %d, 수업명: %s, 내용: %s, 강의시작일: %s ~ 강의종료일: %s, 총강의시간: %d, 하루강의시간: %d\n",
+      no[i],title[i],contents[i],startDate[i],endDate[i], totalHours[i], dayHours[i]);
     }
   }
 }
