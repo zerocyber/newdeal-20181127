@@ -35,8 +35,8 @@ public class App {
       System.out.printf("내용: %s\n" ,contents);
       System.out.printf("시작일: %s\n" ,startDate );
       System.out.printf("종료일: %s\n" ,endDate);
-      System.out.printf("총수업시간: %s\n", totalHours );
-      System.out.printf("하루 강의 시간: %s\n", dayHours);
+      System.out.printf("총수업시간: %d\n", totalHours );
+      System.out.printf("하루 강의 시간: %d\n", dayHours);
       
     }
 }
