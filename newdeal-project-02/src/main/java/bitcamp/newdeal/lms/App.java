@@ -30,7 +30,7 @@ public class App {
       
       keyIn.close();
       
-      System.out.printf("번호: %d\n", no);
+      System.out.println("번호: " + no);
       System.out.printf("수업명: %s\n" ,title); //문자열 안에 삽입되는 명령어 : 이스케이프 명령어
       System.out.printf("내용: %s\n" ,contents);
       System.out.printf("시작일: %s\n" ,startDate );
