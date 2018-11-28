@@ -30,13 +30,13 @@ public class App {
       
       keyIn.close();
       
-      System.out.println("번호 : " + no);
-      System.out.println("수업명: %s\n" +  title); //문자열 안에 삽입되는 명령어 : 이스케이프 명령어
-      System.out.println("내용: %s\n" +  contents);
-      System.out.println("시작일: %s\n" + startDate );
-      System.out.println("종료일: %s\n" +  endDate);
-      System.out.println("총수업시간: %d\n" + totalHours );
-      System.out.println("하루 강의 시간 : %d\n" + dayHours);
+      System.out.printf("번호: %d\n", no);
+      System.out.printf("수업명: %s\n" ,title); //문자열 안에 삽입되는 명령어 : 이스케이프 명령어
+      System.out.printf("내용: %s\n" ,contents);
+      System.out.printf("시작일: %s\n" ,startDate );
+      System.out.printf("종료일: %s\n" ,endDate);
+      System.out.printf("총수업시간: %s\n", totalHours );
+      System.out.printf("하루 강의 시간: %s\n", dayHours);
       
     }
 }
