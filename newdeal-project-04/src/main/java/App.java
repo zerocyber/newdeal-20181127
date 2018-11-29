@@ -60,7 +60,8 @@ public class App {
     // 배열에 입력한 개수만큼 출력한다.
     for (int j = 0; j < i; j++) { //밑에 -는 왼쪽정렬, -가 없으면 오른쪽 정렬, %3d는 3칸띄우고 정수
       System.out.printf("%3d, %-15s, %10s ~ %10s, %4d\n", 
-          lessons[j].no,  lessons[j].title, lessons[j].startDate, lessons[j].endDate, lessons[j].totalHours);
+          lessons[j].no,  lessons[j].title, lessons[j].startDate, 
+          lessons[j].endDate, lessons[j].totalHours);
     }
   }
 }
