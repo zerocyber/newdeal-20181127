@@ -9,36 +9,35 @@ public class App {
 
     final int LENGTH = 10;
     
-    int[] no = new int[LENGTH];
-    String[] title = new String[LENGTH];
-    String[] contents = new String[LENGTH];
-    Date[] startDate = new Date[LENGTH];
-    Date[] endDate = new Date[LENGTH];
-    int[] totalHours = new int[LENGTH];
-    int[] dayHours = new int[LENGTH];
+    Lesson[] lessons = new Lesson[LENGTH]; // 객체배열은 생성 불가능 -> 레퍼런스 배열임
     
     int i = 0;
     while (i < LENGTH) {
+      lessons[i] = new Lesson(); // 사용하기 전에 인스턴스를 생성해야됨 
+      
+      //Lesson lesson = new Lesson(); Lesson 클래스에 해당하는 인스턴스 메모리 생성
+      
+      
       System.out.print("번호? ");
-      no[i] = Integer.parseInt(keyboard.nextLine());
+      lessons[i].no = Integer.parseInt(keyboard.nextLine());
       
       System.out.print("수업명? ");
-      title[i] = keyboard.nextLine();
+      lessons[i].title = keyboard.nextLine();
       
       System.out.print("설명? ");
-      contents[i] = keyboard.nextLine();
+      lessons[i].contents = keyboard.nextLine();
       
       System.out.print("시작일? ");
-      startDate[i] = Date.valueOf(keyboard.nextLine());
+      lessons[i].startDate = Date.valueOf(keyboard.nextLine());
       
       System.out.print("종료일? ");
-      endDate[i] = Date.valueOf(keyboard.nextLine());
+      lessons[i].endDate = Date.valueOf(keyboard.nextLine());
       
       System.out.print("총수업시간? ");
-      totalHours[i] = Integer.parseInt(keyboard.nextLine());
+      lessons[i].totalHours = Integer.parseInt(keyboard.nextLine());
       
       System.out.print("일수업시간? ");
-      dayHours[i] = Integer.parseInt(keyboard.nextLine());
+      lessons[i].dayHours = Integer.parseInt(keyboard.nextLine());
       
       i++; // 배열의 인덱스를 증가시킨다.
       
@@ -59,9 +58,9 @@ public class App {
     System.out.println(); // 빈 줄 출력
     
     // 배열에 입력한 개수만큼 출력한다.
-    for (int j = 0; j < i; j++) {
+    for (int j = 0; j < i; j++) { //밑에 -는 왼쪽정렬, -가 없으면 오른쪽 정렬, %3d는 3칸띄우고 정수
       System.out.printf("%3d, %-15s, %10s ~ %10s, %4d\n", 
-          no[j], title[j], startDate[j], endDate[j], totalHours[j]);
+          lessons[j].no,  lessons[j].title, lessons[j].startDate, lessons[j].endDate, lessons[j].totalHours);
     }
   }
 }
