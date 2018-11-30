@@ -1,0 +1,110 @@
+﻿Web Application Server -> WAS -> Tomcat, JBoss, Web Sphere , JEUS, WebLogic(Tomcat 제외 Java EE 기술 100% 지원, Tomcat은 Web만 지원)
+
+Web Application은 WAS가 필요,  WAS는 JVM이 필요하다
+
+JVM - Java SE(Standard Edition) - JRE, Server JRE,  JDK(개발자용, JRE포함) 
+
+Java EE(Enterprise Edition) - Servlet / JSP, EJB, WebService 등     Tomcat은 Java EE중 Web 관련(Servlet/JSP, JSTL등)만 지원
+
+Spring Framework 덕분에 Tomcat 설치만 한다 - POJO 사용
+
+POJO(Plain Old Java Object) - 순수 Java 라이브러리로만 구성 되어 있는 객체
+
+Web Application - HTML , CSS, JavaScript, jQuery, Bootstrap, AngularJS / Vue / React / Amber
+
+npm(Node Package Manager) 설치
+
+
+
+Web App -> Servlet, JSP/EL/JSTL, SQL , JDBC( 잘 안씀) , ORM(JPA, MyBatis(많이 사용), Hibernate), Spring(IOC 컨테이너, MVC, AOP) 
+
+Gradle 설치 : 라이브러리 관리, Groovy 언어 사용
+
+DB 사용 : Maria DB 설치
+
+소스관리 : GitHub 사용
+
+IDE : Eclipse, Visual Stuio Code
+
+Chromeum + NodeJS  -> Visual Studio Code, Atom
+
+리눅스 - 패키지 매니저 : apt get, yum
+
+윈도우 - 패키지 매니저 : scoop 사용
+
+
+
+설치 순서-  1. Open JDK11 (설치 이후 JAVA_HOME 환경변수 설정 - Path 환경 변수에 %java_home%\bin; 경로 설정 - cmd에서 java_home경로 및 java version 확인 )
+               2. Visual Studio Code
+               3. Git Client (GUI가 아닌 기본 버전) - cmd에서 git --version 확인
+               4. Eclipse 설치 (느낌표가 떠있으면 인스톨러 update후 설치) 
+                   - workspace 디렉토리 선택 
+                   - Java 11 버전을 지원하는 플러그인을 설치 (window - Eclipse Marketplace - java 11 검색 - install)
+                   - window - preference - general -workspace - 인코딩: UTF-8
+                   - general - editor - Text Editors
+                       -Displayedtab width : 2 로 설정
+                       -Insert spaces for tabs 체크
+                       -Show print margin 100으로 설정 (Google 기준)
+                       -Show linenumbers
+                       -Show whitespace characters 체크 : 상세설정에서 투명도 30으로 설정 (공백표시)
+                  -Java - Code Style  - Formmatter - import - Eclipse java google style code xml파일 다운받아서 적용
+                          -Compiler - JDK 버전 11로 변경 (회사에서는 보통 8을 사용한다)
+                 -Web
+                    - CSS Files
+                    - HTML Files 
+                    - JSP Files  전부 UTF-8로 인코딩 변경
+
+              5.Tomcat 설치
+                 - Tomcat9 버전 - Core 바로 밑에 zip 파일 다운로드 - c:\devtool 에 압축해제
+                 - preference - Server - Runtime Enviroments - 위의 압축해제 경로 지정 후 적용
+
+              6.Scoop 패키지 관리자 설치 (되는 경우만)
+                 - windows7이라면 windows powershell 3.0으로 업데이트 해야됨
+                 - .net framework 5.1 다운로드(https://www.microsoft.com/en-us/download/details.aspx?id=54616)
+
+              7. Gradle 설치
+                 -gradle.org에서 다운로드(binary only) 
+                 -환경변수 Path에 설정(gradle/bin 폴더)
+
+              8. MariaDB 설치
+                 -Stable version 다운로드
+                 -설치시 UTF-8 을 기본으로 사용 체크
+                 -환경 변수 Path에 C:\Program Files\MariaDB 10.3\bin 추가 
+                 -cmd창에서 mysql -u root -p (비번 1111) 메세지 확인 (-p는 직접 비밀번호 입력하겠다는 뜻)
+		 -show databases; 로 현재 있는 데이터베이스 확인
+
+
+              9.GitHub.com에 Repository(저장소) 준비
+                -회원가입
+                -저장소 생성
+                -저장소 clone
+                -사용자/git/newdeal-20181127 -> $git clone "url"
+                -복사된 폴더안에 있는 .git 폴더는 git 저장소, 나머지는 working directory
+                -cmd창에서 나머지 경로 다 안쓰고도 *를 붙이면 나머지가 알아서 붙는다.
+                -gradle init --type java-application 실행
+                -DSL(Domain Specific Language) 는 1번 Groovy 선택(Java 호환)
+                -Test Framework 1번 junit 선택
+                -프로젝트 이름 newdeal-project-01
+                -패키지 이름 bitcamp.newdeal.lms
+                -gradle build 치고 엔터
+                -gradle run 치고 엔터 -> Hello World 샘플 메시지 확인
+
+
+
+이클립스 프로젝트는 .settins폴더와 .classpath, .project파일이 있어야 한다. 다른 툴에서 만든 프로젝트를 이클립스에서 import 하려고 하면 호환이 안된다.
+각각의 툴의 특징이 들어있는 설정파일이 따로 존재한다.
+
+build.gradle 파일 안에 plugins 에 id 'eclipse' 추가 이후 gradle eclipse를 cmd창에서 실행하면 해당 프로젝트에 eclipse 설정파일을 만들어준다
+이후 다시 import - general - existing projects into workspace에서 프로젝트 폴더 선택을 하면 적용이 되는 것을 확인 - > Gradle은 어떤 툴을 써도 같은 설정파일을 적용할 수 있게 만들어서 같이 사용할수 있게 만들어준다.
+
+프로젝트 이름은 소문자로만 사용하고 이어지는 부분은 - 로 한다. (ex: newdeal-project-01)
+
+.git폴더는 local 저장소
+
+<GitHub 저장소에 업로드 순서>
+(ReadMe.md , newdeal-project-01) -> 1.저장/변경/삭제 명단 작성 (git add .) -> staging area
+				    2.로컬 저장소에 저장 (Commit이라고 한다) -> git commit -m "create project"
+				    3.로그인 하라고 메시지가 뜬다 ( git config --global user.email , user.name 설정)
+				    4.github에 가서 settings에서 token생성
+				    4.서버에 업로드 (Push라고 한다) - git push -> 비밀번호 아까 그 토큰 붙여넣기 -> cmd창 위쪽 bar오른쪽 클릭 - 편집 - 붙여넣기
+
