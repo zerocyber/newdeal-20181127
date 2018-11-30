@@ -17,8 +17,7 @@ public class BoardHandler {
   public void listBoard() {
     Board[] boards = new Board[list.size()];
     list.toArray(boards);
-    for (Board obj : boards) { // 타입이 맞아야 한다
-      Board board = (Board)obj;
+    for (Board board : boards) { // 타입이 맞아야 한다
       System.out.printf("%3d, %-20s, %s, %d\n", 
           board.getNo(), board.getContents(), 
           board.getCreatedDate(), board.getViewCount());

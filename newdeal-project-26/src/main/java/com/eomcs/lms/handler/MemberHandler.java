@@ -15,9 +15,8 @@ public class MemberHandler {
   }
 
   public void listMember() {
-
     Member[] members = new Member[list.size()];
-
+    list.toArray(members);
     for (Member member : members) {
       System.out.printf("%3d, %-4s, %-20s, %-15s, %s\n", 
           member.getNo(), member.getName(), 

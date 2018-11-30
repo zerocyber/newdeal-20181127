@@ -11,15 +11,16 @@ public class LessonHandler {
   
   public LessonHandler(Scanner keyboard) {
     this.keyboard = keyboard;
-    this.list = new ArrayList<>(20);
+    this.list = new ArrayList<>();
   }
   
   public void listLesson() {
     Lesson[] lessons = new Lesson[list.size()];
+    list.toArray(lessons);
     for (Lesson lesson : lessons) {
-      System.out.printf("%3d, %-15s, %10s ~ %10s, %4d\n", 
+      System.out.printf("%3d, %-15s, %10s ~ %10s, %4d, %4d\n", 
           lesson.getNo(), lesson.getTitle(), 
-          lesson.getStartDate(), lesson.getEndDate(), lesson.getTotalHours());
+          lesson.getStartDate(), lesson.getEndDate(), lesson.getTotalHours(),lesson.getDayHours());
     }
   }
 
