@@ -34,34 +34,37 @@ public class Queue<E> extends LinkedList<E> implements Cloneable {
   }
 
   public Iterator<E> iterator() {
-    return new IteratorImpl<>();
+    return new Iterator<>() {
+      Queue<?> queue;
+      int count;
+
+      { // 인스턴스 블록 - 생성자가 실행되기 전에 먼저 생성되는 블록
+        queue = Queue.this.clone(); //현재 클래스가 아닌 바깥 클래스 복제 후 현재 인스턴스 변수에 저장
+      }
+
+      @Override
+      public boolean hasNext() {
+        return this.count < Queue.this.size();
+      }
+
+      @Override
+      public E next() {
+        this.count++;
+        return (E)queue.poll();
+      }
+    };
   }
 
+  
 
-  //중첩 클래스 사용  - 클래스를 메소드처럼 사용 - 인스턴스 변수 접근 가능!
+
+/*  //중첩 클래스 사용  - 클래스를 메소드처럼 사용 - 인스턴스 변수 접근 가능!
   class IteratorImpl<T> implements Iterator<T> {
-    Queue<?> queue;
-    int count;
 
-    { // 인스턴스 블록 - 생성자가 실행되기 전에 먼저 생성되는 블록
-      queue = Queue.this.clone(); //현재 클래스가 아닌 바깥 클래스 복제 후 현재 인스턴스 변수에 저장
-      
-    }
-
-    @Override
-    public boolean hasNext() {
-      return this.count < Queue.this.size();
-    }
-
-    @Override
-    public T next() {
-      this.count++;
-      return (T)queue.poll();
-    }
 
   }
 
-
+*/
 
 
   /*

@@ -8,6 +8,7 @@ public class QueueIterator<E> implements Iterator<E> {
   
   public QueueIterator (Queue<E> queue){
     this.queue = queue;
+    this.size =queue.size();
   }
   
   @Override
