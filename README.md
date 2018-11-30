@@ -50,6 +50,6 @@
 
 - github.com/eomcs/eomcs-java-project 에서 v2.6 과제 해결
 
-## 32 : 인터페이스로 규칙 정의하기
+## 32 : 인터페이스, Iterator 디자인 패턴 , 중첩클래스 사용
 
-- github.com/eomcs/eomcs-java-project 에서 v3.2 과제 해결
+- github.com/eomcs/eomcs-java-project 에서 v3.2, v3.3 과제 해결
