@@ -74,4 +74,5 @@ public class ArrayList<T> { // T -> Type의 의미, List의 경우는 E(Element)
   public int size() {
     return this.size;
   }
+
 }

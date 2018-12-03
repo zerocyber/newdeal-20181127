@@ -49,6 +49,7 @@
 ## 26 : 다형성, 다형적 변수
 
 - github.com/eomcs/eomcs-java-project 에서 v2.6 과제 해결
+- ArrayList.java의 set()메서드 다시 확인 해보기
 
 ## 32 : 인터페이스, Iterator 디자인 패턴 , 중첩클래스 사용
 
@@ -57,3 +58,8 @@
 ## 34 : 자바 컬렉션 API 사용, Command 디자인 패턴, 예외처리
 
 - github.com/eomcs/eomcs-java-project 에서 v3.4, v3.5, v3.6 과제 해결
+
+## 3.6 - 예외가 발생했을 때 시스템을 멈추지 않게 하는 방법
+- 예외 처리 문법을 사용하는 방법
+- 예외 처리 문법의 존재 의미와 이점
+
