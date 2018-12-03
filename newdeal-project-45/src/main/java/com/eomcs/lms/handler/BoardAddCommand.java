@@ -1,37 +1,60 @@
 package com.eomcs.lms.handler;
 
-import java.sql.Date;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.Scanner;
-import com.eomcs.lms.domain.Board;
+import org.mariadb.jdbc.Driver;
 
 public class BoardAddCommand implements Command{
 
   Scanner keyboard;
-  List<Board> list;
-  
-  
-  public BoardAddCommand(Scanner keyboard, List<Board> list) {
+
+  public BoardAddCommand(Scanner keyboard) {
     this.keyboard = keyboard;
-    this.list = list;
   }
-  
+
   public void excute() {
-    Board board = new Board();
-    
-    System.out.print("번호? ");
-    board.setNo(Integer.parseInt(keyboard.nextLine()));
     
     System.out.print("내용? ");
-    board.setContents(keyboard.nextLine());
+    String content = keyboard.nextLine();
     
-    board.setCreatedDate(new Date(System.currentTimeMillis())); 
+    System.out.print("작성자번호? ");
+    String writerNo = keyboard.nextLine();
     
-    board.setViewCount(0);
-    
-    list.add(board);
-    
-    System.out.println("저장하였습니다.");
+    System.out.print("수업번호? ");
+    String lessonNo = keyboard.nextLine();
+
+    Connection con = null;;
+    Statement stmt =null;;
+
+    try {
+      //MariaDB JDBC Driver(java.sql.Driver) 구현체를 로딩
+      DriverManager.registerDriver(new Driver());
+
+      //DBMS에 연결하기
+      con = DriverManager.getConnection(
+          "jdbc:mariadb://localhost:3306/studydb",
+          "study" ,"1111");
+
+      //SQL 전송을 담당할 객체를 준비
+      stmt = con.createStatement();
+
+      //SQL을 서버에 전송 => 서버에서 결과를 가져올 역할을 하는 객체를 리턴
+      stmt.executeUpdate("insert into board(cont,mno,lno)"
+          + " values('"+content+ "',"
+          + writerNo + ","
+          + lessonNo + ")" );
+      
+      System.out.println("입력했습니다!");
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+      
+    } finally {
+      try {stmt.close();}catch(Exception e) {}
+      try {con.close();}catch(Exception e) {}
+    }
   }
-  
+
 }

@@ -35,28 +35,42 @@ public class App {
 
   public static void main(String[] args) {
     ArrayList<Lesson> lessons = new ArrayList<>();
-    ArrayList<Board> boards = new ArrayList<>();
     ArrayList<Member> members = new ArrayList<>();
 
     HashMap<String, Command> commandMap = new HashMap<>();
 
-    commandMap.put("/board/list", new BoardListCommand(keyboard, boards));
-    commandMap.put("/board/detail", new BoardDetailCommand(keyboard, boards));
-    commandMap.put("/board/add", new BoardAddCommand(keyboard, boards));
-    commandMap.put("/board/update", new BoardUpdateCommand(keyboard, boards));
-    commandMap.put("/board/delete", new BoardDeleteCommand(keyboard, boards));
+    commandMap.put("/board/list", 
+        new BoardListCommand(keyboard));
+    commandMap.put("/board/detail",
+        new BoardDetailCommand(keyboard));
+    commandMap.put("/board/add",
+        new BoardAddCommand(keyboard));
+    commandMap.put("/board/update",
+        new BoardUpdateCommand(keyboard));
+    commandMap.put("/board/delete",
+        new BoardDeleteCommand(keyboard));
 
-    commandMap.put("/lesson/list", new LessonListCommand(keyboard, lessons));
-    commandMap.put("/lesson/detail", new LessonDetailCommand(keyboard, lessons));
-    commandMap.put("/lesson/add", new LessonAddCommand(keyboard, lessons));
-    commandMap.put("/lesson/update", new LessonUpdateCommand(keyboard, lessons));
-    commandMap.put("/lesson/delete", new LessonDeleteCommand(keyboard, lessons));
+    commandMap.put("/lesson/list", 
+        new LessonListCommand(keyboard, lessons));
+    commandMap.put("/lesson/detail", 
+        new LessonDetailCommand(keyboard, lessons));
+    commandMap.put("/lesson/add", 
+        new LessonAddCommand(keyboard, lessons));
+    commandMap.put("/lesson/update", 
+        new LessonUpdateCommand(keyboard, lessons));
+    commandMap.put("/lesson/delete", 
+        new LessonDeleteCommand(keyboard, lessons));
 
-    commandMap.put("/member/list", new MemberListCommand(keyboard, members));
-    commandMap.put("/member/detail", new MemberDetailCommand(keyboard, members));
-    commandMap.put("/member/add", new MemberAddCommand(keyboard, members));
-    commandMap.put("/member/update", new MemberUpdateCommand(keyboard, members));
-    commandMap.put("/member/delete", new MemberDeleteCommand(keyboard, members));
+    commandMap.put("/member/list", 
+        new MemberListCommand(keyboard, members));
+    commandMap.put("/member/detail", 
+        new MemberDetailCommand(keyboard, members));
+    commandMap.put("/member/add", 
+        new MemberAddCommand(keyboard, members));
+    commandMap.put("/member/update", 
+        new MemberUpdateCommand(keyboard, members));
+    commandMap.put("/member/delete", 
+        new MemberDeleteCommand(keyboard, members));
 
     commandMap.put("hello", new HelloCommand(keyboard));
 

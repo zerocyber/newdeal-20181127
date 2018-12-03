@@ -6,11 +6,8 @@ public class Board implements Cloneable {
   private String contents;
   private Date createdDate;
   private int viewCount;
-  
-  @Override
-  public Board clone() throws CloneNotSupportedException {
-    return (Board) super.clone();
-  }
+  private int writerNo;
+  private int lessonNo;
   
   public int getNo() {
     return no;
@@ -36,6 +33,19 @@ public class Board implements Cloneable {
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
   }
+  public int getWriterNo() {
+    return writerNo;
+  }
+  public void setWriterNo(int writerNo) {
+    this.writerNo = writerNo;
+  }
+  public int getLessonNo() {
+    return lessonNo;
+  }
+  public void setLessonNo(int lessonNo) {
+    this.lessonNo = lessonNo;
+  }
+  
   
   
 }
