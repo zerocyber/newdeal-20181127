@@ -1,46 +1,47 @@
 package com.eomcs.lms.handler;
 
-import java.sql.Date;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.Scanner;
-import com.eomcs.lms.domain.Member;
+import org.mariadb.jdbc.Driver;
 
 public class MemberAddCommand implements Command{
 
   Scanner keyboard;
-  List<Member> list;
 
-
-  public MemberAddCommand(Scanner keyboard, List<Member> list) {
+  public MemberAddCommand(Scanner keyboard) {
     this.keyboard = keyboard;
-    this.list = list;
   }
 
-  public void excute() {
-    Member member = new Member();
-
-    System.out.print("번호? ");
-    member.setNo(Integer.parseInt(keyboard.nextLine()));
-
-    System.out.print("이름? ");
-    member.setName(keyboard.nextLine());
-
-    System.out.print("이메일? ");
-    member.setEmail(keyboard.nextLine());
-
-    System.out.print("암호? ");
-    member.setPassword(keyboard.nextLine());
-
-    System.out.print("사진? ");
-    member.setPhoto(keyboard.nextLine());
-
-    System.out.print("전화? ");
-    member.setTel(keyboard.nextLine());
-
-    member.setRegisteredDate(new Date(System.currentTimeMillis())); 
-
-    list.add(member);
-
-    System.out.println("저장하였습니다.");
+  public void excute() {    
+    
+    System.out.print("내용?");
+    String content = keyboard.nextLine();
+    System.out.print("작성자번호?");
+    String mno = keyboard.nextLine();
+    System.out.print("수업번호?");
+    String lno = keyboard.nextLine();
+    
+    
+    Connection con = null;
+    Statement stmt = null;
+    
+    try {
+      
+      DriverManager.registerDriver(new Driver());
+      
+      con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studydb","study", "1111");
+      stmt = con.createStatement();
+      
+      stmt.executeQuery("insert into board(cont,mno,lno) values('"+content+"', "+mno+", "+lno+")");
+      System.out.println("입력하였습니다~~");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    finally {
+      try {stmt.close();}catch(Exception e) {}
+      try {con.close();}catch(Exception e) {}
+    }
   }
 }

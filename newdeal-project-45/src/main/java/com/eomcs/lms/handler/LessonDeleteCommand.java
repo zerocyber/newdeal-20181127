@@ -1,42 +1,48 @@
 package com.eomcs.lms.handler;
 
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.Scanner;
-import com.eomcs.lms.domain.Lesson;
+import org.mariadb.jdbc.Driver;
 
 public class LessonDeleteCommand implements Command{
 
   Scanner keyboard;
-  List<Lesson> list;
-  
-  
-  public LessonDeleteCommand(Scanner keyboard, List<Lesson> list) {
-    this.keyboard = keyboard;
-    this.list = list;
-  }
-  
-  public void excute() {
-    System.out.print("번호? ");
-    int no = Integer.parseInt(keyboard.nextLine());
 
-    int index = indexOfLesson(no);
-    if (index == -1) {
-      System.out.println("해당 수업을 찾을 수 없습니다.");
-      return;
-    }
-    
-    list.remove(index);
-    
-    System.out.println("수업을 삭제했습니다.");
+  public LessonDeleteCommand(Scanner keyboard) {
+    this.keyboard = keyboard;
   }
-  
-  private int indexOfLesson(int no) {
-    for (int i = 0; i < list.size(); i++) {
-      Lesson l = list.get(i);
-      if (l.getNo() == no)
-        return i;
+
+  public void excute() {
+    Connection con = null;;
+    Statement stmt =null;;
+
+    try {
+      //MariaDB JDBC Driver(java.sql.Driver) 구현체를 로딩
+      DriverManager.registerDriver(new Driver());
+
+      //DBMS에 연결하기
+      con = DriverManager.getConnection(
+          "jdbc:mariadb://localhost:3306/studydb",
+          "study" ,"1111");
+      //SQL 전송을 담당할 객체를 준비
+      stmt = con.createStatement();
+
+      System.out.println("번호?");
+      String no = keyboard.nextLine();
+
+      //SQL을 서버에 전송 => 서버에서 결과를 가져올 역할을 하는 객체를 리턴
+      stmt.executeUpdate("delete from board where bno=" + no);
+
+      System.out.println("삭제했습니다!");
+
+    } catch (Exception e) {
+      e.printStackTrace();
+
+    } finally {
+      try {stmt.close();}catch(Exception e) {}
+      try {con.close();}catch(Exception e) {}
     }
-    return -1;
   }
-  
 }

@@ -34,8 +34,6 @@ public class App {
   static Queue<String> commandHistory2 = new LinkedList<>();
 
   public static void main(String[] args) {
-    ArrayList<Lesson> lessons = new ArrayList<>();
-    ArrayList<Member> members = new ArrayList<>();
 
     HashMap<String, Command> commandMap = new HashMap<>();
 
@@ -51,26 +49,26 @@ public class App {
         new BoardDeleteCommand(keyboard));
 
     commandMap.put("/lesson/list", 
-        new LessonListCommand(keyboard, lessons));
+        new LessonListCommand(keyboard));
     commandMap.put("/lesson/detail", 
-        new LessonDetailCommand(keyboard, lessons));
+        new LessonDetailCommand(keyboard));
     commandMap.put("/lesson/add", 
-        new LessonAddCommand(keyboard, lessons));
+        new LessonAddCommand(keyboard));
     commandMap.put("/lesson/update", 
-        new LessonUpdateCommand(keyboard, lessons));
+        new LessonUpdateCommand(keyboard));
     commandMap.put("/lesson/delete", 
-        new LessonDeleteCommand(keyboard, lessons));
+        new LessonDeleteCommand(keyboard));
 
     commandMap.put("/member/list", 
-        new MemberListCommand(keyboard, members));
+        new MemberListCommand(keyboard));
     commandMap.put("/member/detail", 
-        new MemberDetailCommand(keyboard, members));
+        new MemberDetailCommand(keyboard));
     commandMap.put("/member/add", 
-        new MemberAddCommand(keyboard, members));
+        new MemberAddCommand(keyboard));
     commandMap.put("/member/update", 
-        new MemberUpdateCommand(keyboard, members));
+        new MemberUpdateCommand(keyboard));
     commandMap.put("/member/delete", 
-        new MemberDeleteCommand(keyboard, members));
+        new MemberDeleteCommand(keyboard));
 
     commandMap.put("hello", new HelloCommand(keyboard));
 

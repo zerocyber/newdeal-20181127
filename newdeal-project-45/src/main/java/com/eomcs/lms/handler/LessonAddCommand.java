@@ -1,48 +1,60 @@
 package com.eomcs.lms.handler;
 
-import java.sql.Date;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.Scanner;
-import com.eomcs.lms.domain.Lesson;
+import org.mariadb.jdbc.Driver;
 
 public class LessonAddCommand implements Command{
 
   Scanner keyboard;
-  List<Lesson> list;
-  
-  
-  public LessonAddCommand(Scanner keyboard, List<Lesson> list) {
+
+  public LessonAddCommand(Scanner keyboard) {
     this.keyboard = keyboard;
-    this.list = list;
   }
-  
+
   public void excute() {
-    Lesson lesson = new Lesson();
 
-    System.out.print("번호? ");
-    lesson.setNo(Integer.parseInt(keyboard.nextLine()));
+    System.out.print("내용? ");
+    String content = keyboard.nextLine();
 
-    System.out.print("수업명? ");
-    lesson.setTitle(keyboard.nextLine());
+    System.out.print("작성자번호? ");
+    String writerNo = keyboard.nextLine();
 
-    System.out.print("설명? ");
-    lesson.setContents(keyboard.nextLine());
+    System.out.print("수업번호? ");
+    String lessonNo = keyboard.nextLine();
 
-    System.out.print("시작일? ");
-    lesson.setStartDate(Date.valueOf(keyboard.nextLine()));
+    Connection con = null;;
+    Statement stmt =null;;
 
-    System.out.print("종료일? ");
-    lesson.setEndDate(Date.valueOf(keyboard.nextLine()));
+    try {
+      //MariaDB JDBC Driver(java.sql.Driver) 구현체를 로딩
+      DriverManager.registerDriver(new Driver());
 
-    System.out.print("총수업시간? ");
-    lesson.setTotalHours(Integer.parseInt(keyboard.nextLine()));
+      //DBMS에 연결하기
+      con = DriverManager.getConnection(
+          "jdbc:mariadb://localhost:3306/studydb",
+          "study" ,"1111");
 
-    System.out.print("일수업시간? ");
-    lesson.setDayHours(Integer.parseInt(keyboard.nextLine()));
+      //SQL 전송을 담당할 객체를 준비
+      stmt = con.createStatement();
 
-    list.add(lesson);
+      //SQL을 서버에 전송 => 서버에서 결과를 가져올 역할을 하는 객체를 리턴
+      stmt.executeUpdate("insert into board(cont,mno,lno)"
+          + " values('"+content+ "',"
+          + writerNo + ","
+          + lessonNo + ")" );
 
-    System.out.println("저장하였습니다.");
+      System.out.println("입력했습니다!");
+
+    } catch (Exception e) {
+      e.printStackTrace();
+
+    } finally {
+      try {stmt.close();}catch(Exception e) {}
+      try {con.close();}catch(Exception e) {}
+    }
   }
-  
+
 }
