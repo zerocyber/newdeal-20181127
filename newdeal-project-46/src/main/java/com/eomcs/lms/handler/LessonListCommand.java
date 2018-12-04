@@ -1,47 +1,38 @@
 package com.eomcs.lms.handler;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.List;
 import java.util.Scanner;
-import org.mariadb.jdbc.Driver;
+import com.eomcs.lms.dao.LessonDAO;
+import com.eomcs.lms.domain.Lesson;
 
 public class LessonListCommand implements Command{
 
   Scanner keyboard;
+  LessonDAO lessonDAO;
 
-  public LessonListCommand(Scanner keyboard) {
+  public LessonListCommand(Scanner keyboard, LessonDAO lessonDAO) {
     this.keyboard = keyboard;
+    this.lessonDAO = lessonDAO;
   }
 
   public void excute() {
-
-    Connection con = null;
-    Statement stmt = null;
-    ResultSet rs = null;
-
     try {
-      DriverManager.registerDriver(new Driver());
+      List<Lesson> list = lessonDAO.findAll();
       
-      con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studydb", "study", "1111");
-      stmt = con.createStatement();
-      rs = stmt.executeQuery("select bno, cont, cdt ,view, mno, lno from board");
-
-      while (rs.next()) {
-        System.out.printf("%3d, %-20s, %s, %d\n", 
-            rs.getInt("bno"),
-            rs.getString("cont"),
-            rs.getDate("cdt"),
-            rs.getInt("view"));
+      for(Lesson lesson : list) {
+        System.out.printf("%3d, %-20s, %s, %s, %s, %s, %s\n",
+            lesson.getNo(),
+            lesson.getTitle(),
+            lesson.getContents(),
+            lesson.getStartDate(),
+            lesson.getEndDate(),
+            lesson.getTotalHours(),
+            lesson.getDayHours()
+            ); 
       }
-
+      
     } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-      try {rs.close();} catch (Exception e2) {}
-      try {stmt.close();} catch (Exception e2) {}
-      try {con.close();} catch (Exception e2) {}
+      
     }
 
   }

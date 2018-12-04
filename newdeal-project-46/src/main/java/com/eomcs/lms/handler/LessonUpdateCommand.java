@@ -1,45 +1,37 @@
 package com.eomcs.lms.handler;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
 import java.util.Scanner;
-import org.mariadb.jdbc.Driver;
+import com.eomcs.lms.dao.LessonDAO;
+import com.eomcs.lms.domain.Lesson;
 
 public class LessonUpdateCommand implements Command{
 
-  Scanner keyboard;  
+  Scanner keyboard;
+  LessonDAO lessonDAO;
 
-  public LessonUpdateCommand(Scanner keyboard) {
+  public LessonUpdateCommand(Scanner keyboard, LessonDAO lessonDAO) {
     this.keyboard = keyboard;
+    this.lessonDAO = lessonDAO;
   }
 
   public void excute() {
-    Connection con = null;
-    Statement stmt = null;
-
+    
     try {
-      DriverManager.registerDriver(new Driver());
-      con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studydb","study" ,"1111");
-      stmt = con.createStatement();
-
-      System.out.print("번호?");
-      String no = keyboard.nextLine();
-
-      System.out.print("내용?");
-      String content = keyboard.nextLine();
-
-      stmt.executeUpdate("update board set cont='" + content + "' where bno=" + no);
-
-      System.out.println("변경했습니다!");
-
+      
+      System.out.println("번호?");
+      int no = Integer.parseInt(keyboard.nextLine());
+      Lesson lesson = lessonDAO.findByNo(no);
+      
+      System.out.printf("바꿀 내용? (이전내용 : %s)" , lesson.getContents());
+      lesson.setContents(keyboard.nextLine());
+      
+      lessonDAO.update(lesson);
+      System.out.println("변경되었습니다!");
+      
     } catch (Exception e) {
       e.printStackTrace();
     }
-    finally {
-      try {con.close();}catch(Exception e) {}
-      try {stmt.close();}catch(Exception e) {}
-    }
+    
   }
 
 }

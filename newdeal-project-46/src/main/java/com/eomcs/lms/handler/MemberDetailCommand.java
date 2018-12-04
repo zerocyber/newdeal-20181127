@@ -28,7 +28,8 @@ public class MemberDetailCommand implements Command{
         System.out.printf("사진: %s\n",member.getPhoto());
         System.out.printf("전화번호: %s\n",member.getTel());
         System.out.printf("등록일: %s\n",member.getRegisteredDate());
-      }
+      }else
+        System.out.println("해당 번호의 회원이 존재하지 않습니다.");
 
     } catch (Exception e) {
       e.printStackTrace();
