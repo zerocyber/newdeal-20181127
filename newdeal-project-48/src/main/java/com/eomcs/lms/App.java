@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.Stack;
 import com.eomcs.lms.dao.MemberDAO;
 import com.eomcs.lms.dao.impl.MariaDBBoardDAO;
+import com.eomcs.lms.dao.impl.MariaDBLessonDAO;
 import com.eomcs.lms.dao.impl.MariaDBMemberDAO;
 import com.eomcs.lms.handler.BoardAddCommand;
 import com.eomcs.lms.handler.BoardDeleteCommand;
@@ -37,6 +38,7 @@ public class App {
 
     MariaDBBoardDAO boardDAO = new MariaDBBoardDAO();
     MemberDAO memberDAO = new MariaDBMemberDAO();
+    MariaDBLessonDAO lessonDAO = new MariaDBLessonDAO();
     
     HashMap<String, Command> commandMap = new HashMap<>();
     
@@ -53,15 +55,15 @@ public class App {
         new BoardDeleteCommand(keyboard, boardDAO));
 
     commandMap.put("/lesson/list", 
-        new LessonListCommand(keyboard));
+        new LessonListCommand(keyboard,lessonDAO));
     commandMap.put("/lesson/detail", 
-        new LessonDetailCommand(keyboard));
+        new LessonDetailCommand(keyboard,lessonDAO));
     commandMap.put("/lesson/add", 
-        new LessonAddCommand(keyboard));
+        new LessonAddCommand(keyboard, lessonDAO));
     commandMap.put("/lesson/update", 
-        new LessonUpdateCommand(keyboard));
+        new LessonUpdateCommand(keyboard,lessonDAO));
     commandMap.put("/lesson/delete", 
-        new LessonDeleteCommand(keyboard));
+        new LessonDeleteCommand(keyboard, lessonDAO));
 
     commandMap.put("/member/list", 
         new MemberListCommand(keyboard));
