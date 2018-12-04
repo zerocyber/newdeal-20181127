@@ -59,7 +59,21 @@
 
 - github.com/eomcs/eomcs-java-project 에서 v3.4, v3.5, v3.6 과제 해결
 
-## 3.6 - 예외가 발생했을 때 시스템을 멈추지 않게 하는 방법
+## 36 : 예외가 발생했을 때 시스템을 멈추지 않게 하는 방법
 - 예외 처리 문법을 사용하는 방법
 - 예외 처리 문법의 존재 의미와 이점
 
+## 45 : DBMS와 JDBC 프로그래밍
+
+- github.com/eomcs/eomcs-java-project 에서 v4.5 과제 해결
+
+## 46 : DAO 도입
+
+## 47 : DAO에 인터페이스 적용
+
+- 다양한 DBMS에 대응하여 DAO를 교체할 수 있도록 한다
+
+## 48 : SQL 인젝션과 자바 보안
+
+- SQL 삽입 공격을 이해하고 그 공격을 막는 것이 목적
+- Statement의 createStatement() 대신 PreparedStatement의 prepareStatement()를 사용한다.

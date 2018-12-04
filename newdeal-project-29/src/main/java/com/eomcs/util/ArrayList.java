@@ -1,6 +1,8 @@
 package com.eomcs.util;
 
 import java.util.Arrays;
+import java.util.Scanner;
+import com.eomcs.lms.domain.Board;
 
 public class ArrayList<T> {
   private static final int DEFAULT_CAPACITY = 10;
@@ -76,7 +78,7 @@ public class ArrayList<T> {
   }
   
   public static void main(String[] args) {
-    ArrayList<String> list = new ArrayList<>();
+/*    ArrayList<String> list = new ArrayList<>();
     
     list.add("aaa");
     list.add("bbb");
@@ -94,6 +96,21 @@ public class ArrayList<T> {
     
     for (int i = 0; i < list.size(); i++) {
       System.out.println(list.get(i));
-    }
+    }*/
+    Scanner keyboard = new Scanner(System.in);
+    
+    String original = "기존에 있던 내용입니다.";
+    System.out.println(original);
+    
+    System.out.printf("내용? ");
+    String input = keyboard.nextLine();
+    
+    String old = original; // 바꿀 내용을 넣는다.
+    
+    original = input;
+    
+    System.out.println("old변수값 내용 : " + old);
+    
+    
   }
 }
