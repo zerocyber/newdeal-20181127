@@ -54,10 +54,10 @@ public class ArrayList<T> {
       return null;
     
     @SuppressWarnings("unchecked")
-    T old = (T)elementData[index];
-    elementData[index] = obj;
+    T old = (T)elementData[index];//이전 내용을 객체에 저장
+    elementData[index] = obj; //기존 값을 Update
 
-    return old;
+    return old; //이전 내용 반환
   }
   
   public T remove(int index) {

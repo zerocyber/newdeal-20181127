@@ -25,7 +25,7 @@ public class MariaDBLessonDAO implements LessonDAO{
   @Override
   public Lesson findByNo(int no) throws Exception {
     try(SqlSession sqlSession = sqlSessionFactory.openSession();) {
-      return sqlSession.selectOne("LessonDAO.findByNo", no);
+      return sqlSession.selectOne("LessonDAO.findByNo");
     }
   }
 
@@ -33,21 +33,21 @@ public class MariaDBLessonDAO implements LessonDAO{
   @Override
   public int insert(Lesson lesson) throws Exception {
     try(SqlSession sqlSession = sqlSessionFactory.openSession();) {
-      return sqlSession.insert("LessonDAO.insert", lesson);
+      return sqlSession.insert("LessonDAO.insert");
     }
   }
 
   @Override
   public int update(Lesson lesson) throws Exception {
     try(SqlSession sqlSession = sqlSessionFactory.openSession();) {
-      return sqlSession.update("LessonDAO.update", lesson);
+      return sqlSession.update("LessonDAO.update");
     }
   }
 
   @Override
   public int delete(int no) throws Exception {
     try(SqlSession sqlSession = sqlSessionFactory.openSession();) {
-      return sqlSession.delete("LessonDAO.delete", no);
+      return sqlSession.delete("LessonDAO.delete");
     }
   }
 }

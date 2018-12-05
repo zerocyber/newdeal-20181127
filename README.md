@@ -82,3 +82,7 @@
 
 - Java 소스에서 SQL을 코드를 분리한다.
 - JDBC 코드를 캡슐화한 MyBatis로 대체한다.
+
+## 50 : Spring IoC Container도입
+
+- 객체 생성과 소멸을 Spring IoC Container에게 맡긴다.

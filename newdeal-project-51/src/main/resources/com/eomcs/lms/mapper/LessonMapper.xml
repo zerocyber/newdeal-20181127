@@ -26,15 +26,7 @@
   </select>
   
   <select id="findByNo" resultMap="lessonMap" parameterType="int">
-    select lno, 
-	    title, 
-	    cont, 
-	    sdt, 
-	    edt, 
-	    tot_hr, 
-	    day_hr 
-    from lesson 
-    where lno=#{value}
+    select lno, title, cont, sdt, edt, tot_hr, day_hr from lesson where lno=#{value}
   </select>
   
   <insert id="insert" parameterType="lesson">

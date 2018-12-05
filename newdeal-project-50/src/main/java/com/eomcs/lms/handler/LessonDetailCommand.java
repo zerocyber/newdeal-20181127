@@ -18,10 +18,9 @@ public class LessonDetailCommand implements Command{
     try {
       System.out.print("번호? ");
       int no = Integer.parseInt(keyboard.nextLine());
-      System.out.println("no : " + no);
 
       Lesson lesson = lessonDAO.findByNo(no);
-
+      System.out.println("no : " + no);
       if(lesson != null) {       
         System.out.printf("번호: %d\n",lesson.getNo());
         System.out.printf("수업명: %s\n",lesson.getTitle());
