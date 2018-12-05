@@ -86,3 +86,7 @@
 ## 50 : Spring IoC Container도입
 
 - 객체 생성과 소멸을 Spring IoC Container에게 맡긴다.
+
+## 51 : Spring IoC Container와 MyBatis 연동하기
+
+- MyBatis가 하던 Database와 트랜잭션 관리 업무를 Spring IoC Container에게 넘겨라.
