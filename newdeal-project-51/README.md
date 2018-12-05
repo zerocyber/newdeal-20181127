@@ -15,6 +15,9 @@
 - apache common-dbcp 라이브러리 추가
     - DataSource 구현체(DB 커넥션풀 객체)
 
+- Spring-jdbc 라이브러리 추가
+    - Spring 
+
 - AppConfig.java 작성
     - DataSource 객체를 생성하는 메서드 추가
     - SqlSessionFactory 객체를 생성하는 메서드 변경

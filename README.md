@@ -90,3 +90,7 @@
 ## 51 : Spring IoC Container와 MyBatis 연동하기
 
 - MyBatis가 하던 Database와 트랜잭션 관리 업무를 Spring IoC Container에게 넘겨라.
+
+## 52 : Java 프로젝트를 웹 프로젝트로 전환하기
+
+- 이클립스의 톰캣 실행 환경에서 테스트 할 수 있도록 프로젝트의 유형을 변경한다.
