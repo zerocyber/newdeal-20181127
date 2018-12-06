@@ -11,7 +11,6 @@ import com.eomcs.lms.domain.Lesson;
 @Component
 public class MariaDBLessonDAO implements LessonDAO{
 
-
   SqlSessionFactory sqlSessionFactory;
   
   @Override
@@ -35,21 +34,30 @@ public class MariaDBLessonDAO implements LessonDAO{
   @Override
   public int insert(Lesson lesson) throws Exception {
     try(SqlSession sqlSession = sqlSessionFactory.openSession();) {
-      return sqlSession.insert("LessonDAO.insert");
+      return sqlSession.insert("LessonDAO.insert", lesson);
     }
   }
 
   @Override
   public int update(Lesson lesson) throws Exception {
     try(SqlSession sqlSession = sqlSessionFactory.openSession();) {
-      return sqlSession.update("LessonDAO.update");
-    }
+      int count = sqlSession.update("LessonDAO.update", lesson);
+      sqlSession.commit();
+      return count;
+    } 
   }
 
   @Override
   public int delete(int no) throws Exception {
     try(SqlSession sqlSession = sqlSessionFactory.openSession();) {
-      return sqlSession.delete("LessonDAO.delete");
+      return sqlSession.delete("LessonDAO.delete", no);
+    }
+  }
+
+  @Override
+  public Lesson findByNo(int no) throws Exception {
+    try(SqlSession sqlSession = sqlSessionFactory.openSession();) {
+      return sqlSession.selectOne("LessonDAO.findByNo",no);
     }
   }
 }

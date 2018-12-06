@@ -64,7 +64,7 @@ public class Lesson implements Cloneable {
     return memberNo;
   }
 
-  public void setOwnerNo(int memberNo) {
+  public void setMemberNo(int memberNo) {
     this.memberNo = memberNo;
   }
   

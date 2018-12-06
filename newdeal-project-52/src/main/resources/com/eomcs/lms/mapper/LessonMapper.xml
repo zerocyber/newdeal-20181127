@@ -26,6 +26,12 @@
     from lesson
   </select>
   
+  <select id="findByNo" resultMap="lessonMap" parameterType="int">
+  
+  select * from lesson where lno=#{value}
+  
+  </select>
+  
   <!-- Participant : 참여자 -->
   <select id="findByParticipantNo" resultType="hashmap" parameterType="int">
   select 
@@ -38,8 +44,8 @@
   </select>
   
   <insert id="insert" parameterType="lesson">
-	  insert into lesson(title,cont,sdt,edt,tot_hr,day_hr) 
-	  values(#{title}, #{contents} ,#{startDate},#{endDate},#{totalHours},#{dayHours})
+	  insert into lesson(title,cont,sdt,edt,tot_hr,day_hr,mno) 
+	  values(#{title}, #{contents} ,#{startDate},#{endDate},#{totalHours},#{dayHours},#{memberNo})
   </insert>
   
   <update id="update" parameterType="lesson">

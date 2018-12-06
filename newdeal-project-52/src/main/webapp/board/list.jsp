@@ -12,6 +12,7 @@
 	<h1>게시물</h1>
 	
 	<p><a href='add'>새 글</a></p>
+	<p><a href='/lesson/list'>수업목록</a></p>
 	
 	<table border='1'>
 		<tr>

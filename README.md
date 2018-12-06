@@ -89,7 +89,7 @@
 
 ## 51 : Spring IoC Container와 MyBatis 연동하기
 
-- MyBatis가 하던 Database와 트랜잭션 관리 업무를 Spring IoC Container에게 넘겨라.
+- MyBatis가 하던 Database와 트랜잭션 관리 업무를 Spring IoC Container에게 넘긴다.
 
 ## 52 : Java 프로젝트를 웹 프로젝트로 전환하기
 

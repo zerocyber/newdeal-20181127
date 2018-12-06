@@ -6,6 +6,8 @@ import com.eomcs.lms.domain.Lesson;
 
 public interface LessonDAO {
   List<Map<String, Object>> findByParticipantNo(int memberNo);
+  
+  Lesson findByNo(int no) throws Exception;
 
   List<Lesson> findAll() throws Exception;
 
