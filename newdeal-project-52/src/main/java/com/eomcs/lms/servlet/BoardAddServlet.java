@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import com.eomcs.lms.dao.BoardDAO;
 import com.eomcs.lms.domain.Board;
+import com.eomcs.lms.domain.Member;
 
 @WebServlet("/board/add")
 public class BoardAddServlet extends HttpServlet{
@@ -37,12 +38,12 @@ public class BoardAddServlet extends HttpServlet{
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     
-    request.setCharacterEncoding("UTF-8");
-    
     try {
+      Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+      
       Board board = new Board();
       board.setContents(request.getParameter("contents"));
-      board.setWriterNo(Integer.parseInt(request.getParameter("writerNo")));
+      board.setWriterNo(loginUser.getNo());
       board.setLessonNo(Integer.parseInt(request.getParameter("lessonNo")));
 
       boardDAO.insert(board);

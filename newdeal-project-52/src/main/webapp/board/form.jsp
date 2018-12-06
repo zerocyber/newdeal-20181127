@@ -8,16 +8,13 @@
 <title>게시물 등록</title>
 </head>
 <body>
+<jsp:include page="/header.jsp"></jsp:include>
 	<h1>게시물 상세정보</h1>
 	<form action="add" method="post">
 		<table border='1'>
 			<tr>
 				<th>내용</th>
 				<td><textarea name="contents" rows="5" cols="50"></textarea></td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td><input type="text" name="writerNo"></td>
 			</tr>
 			<tr>
 				<th>수업</th>
