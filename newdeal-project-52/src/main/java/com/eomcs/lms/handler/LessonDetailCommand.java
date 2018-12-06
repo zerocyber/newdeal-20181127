@@ -15,7 +15,7 @@ public class LessonDetailCommand implements Command{
   }
 
   public void excute() {    
-    try {
+/*    try {
       System.out.print("번호? ");
       int no = Integer.parseInt(keyboard.nextLine());
 
@@ -33,6 +33,6 @@ public class LessonDetailCommand implements Command{
         System.out.println("해당 수업이 없습니다.");
     } catch (Exception e) {
       e.printStackTrace();
-    }
+    }*/
   }
 }

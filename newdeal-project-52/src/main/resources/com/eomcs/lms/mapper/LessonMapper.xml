@@ -11,6 +11,7 @@
     <result column="edt" property="endDate"/>
     <result column="tot_hr" property="totalHours"/>
     <result column="day_hr" property="dayHours"/>
+    <result column="mno" property="memberNo"/>
   </resultMap>
 
   <select id="findAll" resultMap="lessonMap">
@@ -25,8 +26,15 @@
     from lesson
   </select>
   
-  <select id="findByNo" resultMap="lessonMap" parameterType="int">
-    select lno, title, cont, sdt, edt, tot_hr, day_hr from lesson where lno=#{value}
+  <!-- Participant : 참여자 -->
+  <select id="findByParticipantNo" resultType="hashmap" parameterType="int">
+  select 
+    lm.mno memberNo, 
+    l.lno lessonNo,
+    l.title
+  from les_memb lm
+    join lesson l on lm.lno = l.lno 
+  where lm.mno=#{value}
   </select>
   
   <insert id="insert" parameterType="lesson">

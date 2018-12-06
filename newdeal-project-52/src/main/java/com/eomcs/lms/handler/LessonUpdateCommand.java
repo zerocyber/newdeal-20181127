@@ -16,7 +16,7 @@ public class LessonUpdateCommand implements Command{
 
   public void excute() {
     
-    try {
+/*    try {
       
       System.out.println("번호?");
       int no = Integer.parseInt(keyboard.nextLine());
@@ -30,7 +30,7 @@ public class LessonUpdateCommand implements Command{
       
     } catch (Exception e) {
       e.printStackTrace();
-    }
+    }*/
     
   }
 
