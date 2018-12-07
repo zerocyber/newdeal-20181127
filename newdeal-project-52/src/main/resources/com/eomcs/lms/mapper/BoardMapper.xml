@@ -3,50 +3,62 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BoardDAO">
-  <resultMap type="board" id="boardMap"> <!-- PK 컬럼은 반드시 프로퍼티 명을 id로 해야 한다 -->
-    <result column="bno" property="no"/>
-    <result column="cont" property="contents"/>
-    <result column="cdt" property="createdDate"/>
-    <result column="view" property="viewCount"/>
-    <result column="mno" property="writerNo"/>
-    <result column="lno" property="lessonNo"/>
-  </resultMap>
+	<resultMap type="board" id="boardMap"> <!-- PK 컬럼은 반드시 프로퍼티 명을 id로 해야 한다 -->
+		<result column="bno" property="no" />
+		<result column="cont" property="contents" />
+		<result column="cdt" property="createdDate" />
+		<result column="view" property="viewCount" />
+		<result column="mno" property="writerNo" />
+		<result column="lno" property="lessonNo" />
+		<association property="lesson" javaType="lesson">
+			<id column="lno" property="no" />
+			<result column="title" property="title" />
+		</association>
+		<association property="writer" javaType="member">
+			<id column="mno" property="no" />
+			<result column="name" property="name" />
+		</association>
+	</resultMap>
 
-  <select id="findAll" resultMap="boardMap">
-    select
-	    bno,
-	    cont, 
-	    cdt,
-	    view
-    from board
-  </select>
-  
-  <select id="findByNo" resultMap="boardMap" parameterType="int">
-    select 
-    bno, 
-    cont, 
-    cdt, 
-    view, 
-    mno, 
-    lno
-    from board
-    where bno=#{value}
-  </select>
-  
-  <insert id="insert" parameterType="board">
-	  insert into board(cont,mno,lno) 
-	  values(#{contents}, #{writerNo} ,#{lessonNo})
-  </insert>
-  
-  <update id="update" parameterType="board">
-	  update board set 
-		  cont=#{contents} 
-	  where bno=#{no}
-  </update>
-  
-  <delete id="delete" parameterType="int">
-	  delete from board 
-	  where bno=#{value}
-  </delete>
-  
+	<select id="findAll" resultMap="boardMap">
+		select
+		bno,
+		cont,
+		cdt,
+		view
+		from board
+	</select>
+
+	<select id="findByNo" resultMap="boardMap" parameterType="int">
+		select
+			b.bno,
+			b.cont,
+			b.cdt,
+			b.view,
+			m.mno,
+			m.name,
+			l.lno,
+			l.title
+		from board b
+			join member m on b.mno=m.mno
+			join lesson l on b.lno=l.lno
+		where bno=#{value}
+	</select>
+
+	<insert id="insert" parameterType="board">
+		insert into board(cont,mno,lno)
+		values(#{contents}, #{writerNo} ,#{lessonNo})
+	</insert>
+
+	<update id="update" parameterType="board">
+		update board set
+		cont=#{contents}
+		where bno=#{no}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from board
+		where bno=#{value}
+	</delete>
+
 </mapper>
