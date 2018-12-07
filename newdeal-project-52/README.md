@@ -50,3 +50,10 @@
 
 ### Filter를 이용하여 Servlet을 실행하기 전에 특정 작업을 수행한다.
 
+### MyBatis의 고급 ResultMap 다루기
+
+### MyBatis의 DAO 구현체 자동 생성하기
+
+- AppConfig.java
+    - @MapperScan 애노테이션 사용하여 DAO 인터페이스 구현체를 자동 생성한다.
+

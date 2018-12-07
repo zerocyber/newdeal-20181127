@@ -49,7 +49,7 @@
 ## 26 : 다형성, 다형적 변수
 
 - github.com/eomcs/eomcs-java-project 에서 v2.6 과제 해결
-- ArrayList.java의 set()메서드 다시 확인 해보기
+- ArrayList.java의 set()메서드 다시 확인 해보기 -> 확인 끝
 
 ## 32 : 인터페이스, Iterator 디자인 패턴 , 중첩클래스 사용
 

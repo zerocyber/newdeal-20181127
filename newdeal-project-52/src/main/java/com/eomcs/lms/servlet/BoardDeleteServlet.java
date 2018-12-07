@@ -1,7 +1,6 @@
 package com.eomcs.lms.servlet;
 
 import java.io.IOException;
-import java.util.Scanner;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import com.eomcs.lms.dao.BoardDAO;
-import com.eomcs.lms.dao.impl.MariaDBBoardDAO;
 
 @WebServlet("/board/delete")
 public class BoardDeleteServlet extends HttpServlet{

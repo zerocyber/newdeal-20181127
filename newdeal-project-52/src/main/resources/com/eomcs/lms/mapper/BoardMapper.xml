@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="BoardDAO">
+<mapper namespace="com.eomcs.lms.dao.BoardDAO">
 	<resultMap type="board" id="boardMap"> <!-- PK 컬럼은 반드시 프로퍼티 명을 id로 해야 한다 -->
 		<result column="bno" property="no" />
 		<result column="cont" property="contents" />
@@ -22,10 +22,10 @@
 
 	<select id="findAll" resultMap="boardMap">
 		select
-		bno,
-		cont,
-		cdt,
-		view
+			bno,
+			cont,
+			cdt,
+			view
 		from board
 	</select>
 

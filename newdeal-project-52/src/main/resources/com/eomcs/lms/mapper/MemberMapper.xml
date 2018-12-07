@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="MemberDAO">
+<mapper namespace="com.eomcs.lms.dao.MemberDAO">
   <resultMap type="member" id="memberMap"> <!-- PK 컬럼은 반드시 프로퍼티 명을 id로 해야 한다 -->
     <result column="mno" property="no"/>
     <result column="name" property="name"/>

@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -12,8 +13,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
-import com.eomcs.lms.dao.BoardDAO;
-import com.eomcs.lms.dao.impl.MariaDBBoardDAO;
 
 // Spring IoC Container에게 객체를 패키지 이름을 알려주면
 // 그 패키지를 뒤져서 @Component가 붙은 클래스에 대해
@@ -22,6 +21,13 @@ import com.eomcs.lms.dao.impl.MariaDBBoardDAO;
 
 // Spring IoC 컨테이너에게 프로퍼티 파일을 로딩할 것을 명령한다.
 @PropertySource("classpath:/com/eomcs/lms/conf/jdbc.properties")
+
+// MyBatis의 DAO인터페이스 구현체를 자동 생성하는 도우미를 추가한다.
+// => DAO 인터페이스가 들어있는 패키지를 지정한다.
+// => 자동 생성된 DAO구현체가 SQL을 찾을 때 인터페이스의 전체 이름으로 찾는다.
+// => 따라서 SQL Mapper파일의 namespace 이름은 인터페이스의 전체 이름과 같아야 한다.
+// => 인터페이스의 메서드 이름, 파라미터, 리턴 타입은 SQL Mapper의 아이디(id), 파라미터 타입, 리턴 타입이 같아야 한다.
+@MapperScan("com.eomcs.lms.dao")
 public class AppConfig {
   
   // Spring IoC Container가 로딩한 프로퍼티 정보를 가져오기
@@ -86,9 +92,5 @@ public class AppConfig {
   public Scanner keyboard() {
     return new Scanner(System.in);
   }
-  
-  public BoardDAO boardDAO(SqlSessionFactory sqlSessionFactory) {
-    
-    return new MariaDBBoardDAO(sqlSessionFactory);
-  }
+
 }
