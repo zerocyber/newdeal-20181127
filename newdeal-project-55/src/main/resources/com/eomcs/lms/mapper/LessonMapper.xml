@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eomcs.lms.dao.LessonDAO">
+  <resultMap type="lesson" id="lessonMap"> <!-- PK 컬럼은 반드시 프로퍼티 명을 id로 해야 한다 -->
+    <result column="lno" property="no"/>
+    <result column="title" property="title"/>
+    <result column="cont" property="contents"/>
+    <result column="sdt" property="startDate"/>
+    <result column="edt" property="endDate"/>
+    <result column="tot_hr" property="totalHours"/>
+    <result column="day_hr" property="dayHours"/>
+    <result column="mno" property="memberNo"/>
+  </resultMap>
+
+  <select id="findAll" resultMap="lessonMap">
+    select
+	    lno,
+	    title,
+	    cont, 
+	    sdt,
+	    edt,
+	    tot_hr,
+	    day_hr
+    from lesson
+  </select>
+  
+  <select id="findByNo" resultMap="lessonMap" parameterType="int">
+  
+  select * from lesson where lno=#{value}
+  
+  </select>
+  
+  <!-- Participant : 참여자 -->
+  <select id="findByParticipantNo" resultType="hashmap" parameterType="int">
+  select 
+    lm.mno memberNo, 
+    l.lno lessonNo,
+    l.title
+  from les_memb lm
+    join lesson l on lm.lno = l.lno 
+  where lm.mno=#{value}
+  </select>
+  
+  <insert id="insert" parameterType="lesson">
+	  insert into lesson(title,cont,sdt,edt,tot_hr,day_hr,mno) 
+	  values(#{title}, #{contents} ,#{startDate},#{endDate},#{totalHours},#{dayHours},#{memberNo})
+  </insert>
+  
+  <update id="update" parameterType="lesson">
+	  update lesson set 
+		  cont=#{contents} 
+	  where lno=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+	  delete from lesson 
+	  where lno=#{value}
+  </delete>
+  
+</mapper>
