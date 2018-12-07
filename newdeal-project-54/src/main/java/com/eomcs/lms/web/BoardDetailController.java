@@ -2,22 +2,21 @@ package com.eomcs.lms.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.BoardDAO;
 import com.eomcs.lms.domain.Board;
 
-@Component("/board/detail")
-public class BoardDetailController implements PageController{
-
+@Controller
+public class BoardDetailController{
   BoardDAO boardDAO;
 
   public BoardDetailController(BoardDAO boardDAO) {
     this.boardDAO = boardDAO;
-
   }
 
-  @Override
-  public String excute(HttpServletRequest request, HttpServletResponse response)
+  @RequestMapping("/board/detail")
+  public String detail(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
     
     int no = Integer.parseInt(request.getParameter("no"));
@@ -27,7 +26,6 @@ public class BoardDetailController implements PageController{
     response.setContentType("text/html;charset=UTF-8");
 
     return "/board/detail.jsp";
-
   }
 
 }

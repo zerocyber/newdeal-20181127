@@ -2,21 +2,22 @@ package com.eomcs.lms.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.BoardDAO;
 import com.eomcs.lms.domain.Board;
 
-@Component("/board/update")
-public class BoardUpdateController implements PageController {
+@Controller
+public class BoardUpdateController {
 
   BoardDAO boardDAO;
-  
+
   public BoardUpdateController(BoardDAO boardDAO) {
-    
+
     this.boardDAO = boardDAO;
   }
-  
-  @Override
+
+  @RequestMapping("/board/update")
   public String excute(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
 

@@ -2,12 +2,13 @@ package com.eomcs.lms.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@Component("/auth/logout")
-public class LogoutController implements PageController{
+@Controller
+public class LogoutController {
 
-  @Override
+  @RequestMapping("/auth/logout")
   public String excute(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
 
